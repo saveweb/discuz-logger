@@ -76,9 +76,6 @@ class MobileApi:
     async def iter_threads(self, fid: str | int):
         page = 1
         forumdisplay = await self.forumdisplay(fid, page=page)
-        assert int(forumdisplay["Variables"]["forum"]["threads"]) <= int(
-            forumdisplay["Variables"]["forum"]["threadcount"]
-        )
         threads_total: int = int(forumdisplay["Variables"]["forum"]["threads"])
         threads_fetched: int = 0
         tqd = tqdm(total=threads_total, desc=f"fid={fid}", unit="threads",dynamic_ncols=True)
@@ -94,4 +91,8 @@ class MobileApi:
 
             tqd.total = threads_total
             tqd.update(len(threads))
+
+            if len(threads) == 0:
+                print(f'fid={fid}: {forumdisplay["Message"]}')
+                break
         tqd.close()

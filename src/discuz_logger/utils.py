@@ -8,10 +8,12 @@ from discuz_logger.define.thread import ThreadMeta
 @dataclass
 class Args:
     site: str
+    workers: int
 
 def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--site", type=str, required=True)
+    parser.add_argument("--workers", type=int, default=5)
     return Args(**vars(parser.parse_args()))
 
 

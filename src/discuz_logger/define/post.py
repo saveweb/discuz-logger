@@ -18,7 +18,6 @@ class Post:
     replycredit: str
     position: str
     groupid: str
-    number: str
     dbdateline: str
     groupiconid: str
 
@@ -27,3 +26,5 @@ class Post:
     imagelist: Optional[list] = None
     memberstatus: Optional[str] = None
     username: Optional[str] = None
+    attachlist: Optional[list] = None
+    number: Optional[str] = None
